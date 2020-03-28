@@ -4,10 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "watch-main": "npx watchify ./public/main.js -o ./public/bundle.js ",
-    "watch-student": "npx watchify ./public/student.js -o ./public/studentBundle.js ",
-    "watch-teacher": "npx watchify ./public/teacher.js -o ./public/teacherBundle.js",
+    "start": "export NODE_ENV=dev && nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -18,10 +15,14 @@
   "author": "YashMeh",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "helmet": "^3.22.0",
     "mongoose": "^5.9.6",
-    "simple-peer": "^9.6.2",
-    "socket.io": "^2.3.0",
-    "uuid": "^7.0.2"
+    "morgan": "^1.10.0",
+    "peer": "^0.5.1",
+    "sanitizer": "^0.1.3"
   }
 }
