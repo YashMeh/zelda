@@ -8191,8 +8191,9 @@ function config (name) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],34:[function(require,module,exports){
+var courseId = prompt("Enter the access code");
 let Peer = require("simple-peer");
-let socket = io();
+let socket = io(`/${courseId}`);
 const video = document.querySelector("video");
 let client = {};
 //get stream
@@ -8202,8 +8203,8 @@ navigator.mediaDevices
     //tell the client that a new user has connected
     socket.emit("NewClient");
     //start the video on the client
-    video.srcObject = stream;
-    video.play();
+    // video.srcObject = stream;
+    // video.play();
     //used to initialize a peer
     function InitPeer(type) {
       //initiator=>who is calling the signal function
@@ -8215,6 +8216,7 @@ navigator.mediaDevices
       });
       //when we get the stream from the other user we want to create the video
       peer.on("stream", function(stream) {
+        console.log("REached streaming ");
         CreateVideo(stream);
       });
       //when the peer is close
@@ -8227,6 +8229,7 @@ navigator.mediaDevices
 
     //for peer of type init
     function MakePeer() {
+      console.log("Make peer called");
       client.gotAnswer = false;
       let peer = InitPeer("init");
       //this function will execute automatically because of `init`
